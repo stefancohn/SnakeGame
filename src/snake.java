@@ -21,17 +21,18 @@ public class snake {
         this.length++;
     }
 
+    //not finished
     public void checkSnakeCollision() {
         for (int i = 1; i < bodyParts.size(); i++) {
             Integer[] cords = bodyParts.get(i);
             int xBody = cords[0];
             int yBody = cords[1];
             if (xHead == xBody && yHead == yBody) {
-                System.out.println("OOF");
+                GamePanel.currentState = 1;
             }
         }
         if (xHead < 0 || xHead > GamePanel.SCREEN_WIDTH || yHead < 0 || yHead > GamePanel.SCREEN_HEIGHT) {
-            System.out.println("OOF");
+            GamePanel.currentState = 1;
         }
     }
 

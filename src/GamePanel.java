@@ -12,12 +12,13 @@ public class GamePanel extends JPanel implements Runnable {
 
     Thread GameThread;
     KeyHandler keyH = new KeyHandler();
+    mouseHandler mH = new mouseHandler();
 
     snake Snake = new snake(keyH);
     apple Apple = new apple(Snake);
 
-    //public static int currentState;
-    //public static Scene currentScene;
+    public static int currentState = 0;
+    menu Menu = new menu(mH);
 
     GamePanel() {
         // panel set up
@@ -26,7 +27,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.setFocusable(true);
         this.setDoubleBuffered(true);
         this.addKeyListener(keyH);
-       // GamePanel.changeState(0);
+        this.addMouseListener(mH);
     }
 
     //starts the thread!
@@ -35,17 +36,9 @@ public class GamePanel extends JPanel implements Runnable {
         GameThread.start();
     }
 
-    /*public static void changeState(int newState) {
-        GamePanel.currentState = newState;
-        switch(GamePanel.currentState) {
-            case 0:
-                GamePanel.currentScene = new MenuScene();
-                break;
-            case 1: 
-                GamePanel.currentScene = new GameScene();
-                break;
-        }
-    } */
+    public static void changeState(int newState) {
+        
+    } 
 
     @Override
     public void run() {
@@ -84,11 +77,14 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void update(){
-        Apple.checkCollision();
-        Snake.update();
-        Snake.checkSnakeCollision();
-
-        //currentScene.update();
+        if (currentState == 1) {
+            Apple.checkCollision();
+            Snake.update();
+            Snake.checkSnakeCollision();
+        }
+        else if (currentState == 0) {
+            Menu.update();
+        }
     }
 
     public void paintComponent(Graphics g) {
@@ -103,12 +99,14 @@ public class GamePanel extends JPanel implements Runnable {
         //for (int i = 0; i < SCREEN_WIDTH/UNIT_SIZE; i++) {
             //g2.drawLine(i*UNIT_SIZE, 0, i*UNIT_SIZE, SCREEN_HEIGHT);
         //}
-
-        Snake.draw(g2);
-        Apple.draw(g2);
-        //currentScene.draw(g2);
-        
-
+        if (currentState == 1) { 
+            Snake.draw(g2);
+            Apple.draw(g2); 
+        }
+        else if (currentState == 0) {
+            Menu.draw(g2);
+        }
+            
         g2.dispose();
     }
 }

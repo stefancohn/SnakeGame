@@ -35,6 +35,7 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
         this.setDoubleBuffered(true);
         this.addKeyListener(keyH);
         this.addMouseListener(mH);
+        this.addMouseMotionListener(mH);
     }
 
     //starts the thread!
@@ -77,26 +78,16 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
         double delta = 0; 
         long lastTime = System.nanoTime();
         long currentTime; 
-        long timer = 0;
-        int drawTime = 0;
 
         while (GameThread != null) {
             currentTime = System.nanoTime();
             delta += (currentTime - lastTime) / drawInterval;
-            timer += currentTime - lastTime;
             lastTime = currentTime;
 
             if (delta >= 1) {
                 update();
                 repaint();
                 delta--;
-                drawTime++;
-            }
-
-            if (timer >= 1000000000) {
-                //System.out.println("FPS: " + drawTime);
-                drawTime = 0;
-                timer = 0;
             }
         }
     }

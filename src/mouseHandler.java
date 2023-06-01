@@ -25,10 +25,11 @@ public class mouseHandler implements MouseListener {
     }
 
     @Override
+    //this doesn't work?
     public void mouseEntered(MouseEvent e) {
         int x = e.getX();
         int y = e.getY();
-        if (x >= ((GamePanel.SCREEN_WIDTH/2) -140) && y >= 300 && x <= ((GamePanel.SCREEN_WIDTH/2) +100) && y <= 585) {
+        if (x >= ((GamePanel.SCREEN_WIDTH/2) -110) && y >= 325 && x <= ((GamePanel.SCREEN_WIDTH/2) +110) && y <= 425) {
             hover = true;
         }
     }
@@ -37,7 +38,7 @@ public class mouseHandler implements MouseListener {
     public void mouseExited(MouseEvent e) {
         int x = e.getX();
         int y = e.getY();
-        if (x <= ((GamePanel.SCREEN_WIDTH/2) -140) && y <= 300 && x >= ((GamePanel.SCREEN_WIDTH/2) +100) && y >= 585) {
+        if (x < ((GamePanel.SCREEN_WIDTH/2) - 140) || y < 300 || x > ((GamePanel.SCREEN_WIDTH/2) + 100) || y > 585) {
             hover = false;
         }
     }

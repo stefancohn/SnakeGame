@@ -36,7 +36,11 @@ public class apple {
             int holdY = GamePanel.UNIT_SIZE * random.nextInt(GamePanel.SCREEN_HEIGHT / GamePanel.UNIT_SIZE);
 
             for (Integer[] bodyPart : duck.bodyParts) {
-                if (holdX == bodyPart[0] && holdY == bodyPart[1] || (holdX == duck.xHead && holdY == duck.yHead)) {
+                if (holdX == bodyPart[0] && holdY == bodyPart[1] || (holdX == duck.xHead && holdY == duck.yHead)
+                 || ((holdX == duck.xHead - 1 && holdY == duck.yHead - 1) || (holdX == duck.xHead + 1 && holdY == duck.yHead + 1)
+                 || (holdX == duck.xHead - 1 && holdY == duck.yHead + 1) || (holdX == duck.xHead + 1 && holdY == duck.yHead - 1))
+                 || (holdX == duck.xHead - 1 && holdY == duck.yHead) || (holdX == duck.xHead && holdY == duck.yHead - 1)
+                 || (holdX == duck.xHead + 1 && holdY == duck.yHead) || holdX == duck.xHead && holdY == duck.yHead + 1) {
                     appleNotOK = true;
                     break;
                 }

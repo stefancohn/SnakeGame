@@ -28,11 +28,11 @@ public class snake {
             int xBody = cords[0];
             int yBody = cords[1];
             if (xHead == xBody && yHead == yBody) {
-                GamePanel.currentState = 1;
+                GamePanel.currentState = 2;
             }
         }
         if (xHead < 0 || xHead > GamePanel.SCREEN_WIDTH || yHead < 0 || yHead > GamePanel.SCREEN_HEIGHT) {
-            GamePanel.currentState = 1;
+            GamePanel.currentState = 2;
         }
     }
 
